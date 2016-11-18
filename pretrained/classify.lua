@@ -32,8 +32,8 @@ end
 
 
 -- Load the model
-local model = torch.load(arg[1]):cuda()
-local softMaxLayer = cudnn.SoftMax():cuda()
+local model = torch.load(arg[1]):type('torch.CudaHalfTensor')
+local softMaxLayer = cudnn.SoftMax():type('torch.CudaHalfTensor')
 
 -- add Softmax layer
 model:add(softMaxLayer)
@@ -67,7 +67,7 @@ for i=2,#arg do
    local batch = img:view(1, table.unpack(img:size():totable()))
 
    -- Get the output of the softmax
-   local output = model:forward(batch:cuda()):squeeze()
+   local output = model:forward(batch:type('torch.CudaHalfTensor')):squeeze()
 
    -- Get the top 5 class indexes and probabilities
    local probs, indexes = output:topk(N, true, true)

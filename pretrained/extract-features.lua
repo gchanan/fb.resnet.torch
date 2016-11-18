@@ -72,7 +72,7 @@ local number_of_files = #list_of_filenames
 if batch_size > number_of_files then batch_size = number_of_files end
 
 -- Load the model
-local model = torch.load(arg[1]):cuda()
+local model = torch.load(arg[1]):type('torch.CudaHalfTensor')
 
 -- Remove the fully connected layer
 assert(torch.type(model:get(#model.modules)) == 'nn.Linear')
@@ -117,7 +117,7 @@ for i=1,number_of_files,batch_size do
     end
 
    -- Get the output of the layer before the (removed) fully connected layer
-   local output = model:forward(img_batch:cuda()):squeeze(1)
+   local output = model:forward(img_batch:type('torch.CudaHalfTensor')):squeeze(1)
 
 
    -- this is necesary because the model outputs different dimension based on size of input
