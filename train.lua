@@ -48,6 +48,7 @@ function Trainer:train(epoch, dataloader)
    -- set the batch norm to training mode
    self.model:training()
    for n, sample in dataloader:run() do
+      if n == 104 then break end
       local dataTime = dataTimer:time().real
 
       -- Copy input and target to the GPU
