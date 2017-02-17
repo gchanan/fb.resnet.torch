@@ -92,8 +92,8 @@ function M.exec(opt, cacheFile)
 
    local trainDir = paths.concat(opt.data, 'train')
    local valDir = paths.concat(opt.data, 'val')
-   assert(paths.dirp(trainDir), 'train directory not found: ' .. trainDir)
-   assert(paths.dirp(valDir), 'val directory not found: ' .. valDir)
+   --assert(paths.dirp(trainDir), 'train directory not found: ' .. trainDir)
+   --assert(paths.dirp(valDir), 'val directory not found: ' .. valDir)
 
    print("=> Generating list of images")
    local classList, classToIdx = findClasses(trainDir)

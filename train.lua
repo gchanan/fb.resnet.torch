@@ -40,7 +40,7 @@ function Trainer:train(epoch, dataloader)
       return self.criterion.output, self.gradParams
    end
 
-   local trainSize = dataloader:size()
+   local trainSize = 0 --dataloader:size()
    local top1Sum, top5Sum, lossSum = 0.0, 0.0, 0.0
    local N = 0
 

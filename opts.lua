@@ -60,15 +60,15 @@ function M.parse(arg)
    opt.optnet = opt.optnet ~= 'false'
    opt.resetClassifier = opt.resetClassifier ~= 'false'
 
-   if not paths.dirp(opt.save) and not paths.mkdir(opt.save) then
-      cmd:error('error: unable to create checkpoint directory: ' .. opt.save .. '\n')
-   end
+   --if not paths.dirp(opt.save) and not paths.mkdir(opt.save) then
+   --   cmd:error('error: unable to create checkpoint directory: ' .. opt.save .. '\n')
+   --end
 
    if opt.dataset == 'imagenet' then
       -- Handle the most common case of missing -data flag
       local trainDir = paths.concat(opt.data, 'train')
       if not paths.dirp(opt.data) then
-         cmd:error('error: missing ImageNet data directory')
+      --   cmd:error('error: missing ImageNet data directory')
       elseif not paths.dirp(trainDir) then
          cmd:error('error: ImageNet missing `train` directory: ' .. trainDir)
       end
