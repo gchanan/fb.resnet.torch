@@ -47,9 +47,15 @@ function Trainer:train(epoch, dataloader)
    print('=> Training epoch # ' .. epoch)
    -- set the batch norm to training mode
    self.model:training()
-   for n, sample in dataloader:run() do
+   local sample = {}
+   local myBatchSize = self.opt.batchSize
+   sample.input = torch.FloatTensor(myBatchSize,3,224,224):fill(0)
+   sample.target = torch.IntTensor(myBatchSize):fill(1)
+   --for n, sample in dataloader:run() do
+   for n=1,103 do
+--   for n, sample in dataloader:run() do
       local dataTime = dataTimer:time().real
-
+      --print('sample', sample)
       -- Copy input and target to the GPU
       self:copyInputs(sample)
 
